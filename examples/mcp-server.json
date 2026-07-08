@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "windows-appshots": {
+      "command": "python",
+      "args": [
+        "C:\\Users\\<your-user-name>\\plugins\\windows-appshots\\scripts\\windows_appshots_mcp.py"
+      ]
+    }
+  }
+}

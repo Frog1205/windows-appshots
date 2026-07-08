@@ -69,6 +69,95 @@ windows-appshots@personal  installed, enabled
 
 安装后请重启 Codex 客户端，或至少新开一个线程，让新的 plugin、skill 和 MCP 工具被加载。
 
+## Agent 工具通用安装
+
+Windows Appshots 的核心是一个标准 MCP stdio 服务，所以除了 Codex，也适合接入 WorkBuddy、Claude Desktop、Cursor、Cherry Studio、Cline、Continue 等支持 MCP 的 Agent 工具。
+
+先把仓库 clone 到一个稳定路径：
+
+```powershell
+mkdir "$env:USERPROFILE\plugins" -Force
+git clone https://github.com/Frog1205/windows-appshots.git "$env:USERPROFILE\plugins\windows-appshots"
+```
+
+确认 MCP 服务能启动：
+
+```powershell
+python "$env:USERPROFILE\plugins\windows-appshots\scripts\windows_appshots_mcp.py"
+```
+
+这个命令会等待 MCP 客户端通过 stdio 发送协议消息；直接运行时没有输出是正常的，按 `Ctrl+C` 退出即可。
+
+### 通用 MCP 配置
+
+在支持 MCP 的 Agent 工具里，添加一个 stdio MCP server：
+
+```json
+{
+  "mcpServers": {
+    "windows-appshots": {
+      "command": "python",
+      "args": [
+        "C:\\Users\\<你的用户名>\\plugins\\windows-appshots\\scripts\\windows_appshots_mcp.py"
+      ]
+    }
+  }
+}
+```
+
+如果工具是表单式配置，通常这样填：
+
+```text
+Name: windows-appshots
+Type: stdio
+Command: python
+Args: C:\Users\<你的用户名>\plugins\windows-appshots\scripts\windows_appshots_mcp.py
+```
+
+如果你的 Agent 工具支持设置工作目录，也可以填：
+
+```text
+Working directory: C:\Users\<你的用户名>\plugins\windows-appshots
+```
+
+### WorkBuddy 安装方式
+
+在 WorkBuddy 或类似 Agent 工具中，如果有「MCP Servers」「Tools」「Extensions」「Agent Tools」这类入口：
+
+1. 新增 MCP Server
+2. 选择 `stdio`
+3. `Name` 填 `windows-appshots`
+4. `Command` 填 `python`
+5. `Args` 填你的实际脚本路径：
+
+```text
+C:\Users\<你的用户名>\plugins\windows-appshots\scripts\windows_appshots_mcp.py
+```
+
+保存后重启 Agent 会话，工具列表里应该能看到：
+
+```text
+take_windows_appshot
+```
+
+你可以对 Agent 说：
+
+```text
+调用 windows-appshots，3 秒后抓取当前前台窗口，并读取 UI 文本
+```
+
+然后在 3 秒内切到目标应用窗口。
+
+### Codex 插件模式与 MCP 模式的区别
+
+| 模式 | 适合工具 | 优点 |
+| --- | --- | --- |
+| Codex 插件模式 | Codex 客户端、Codex CLI | 有插件卡片、Skill、Marketplace、默认提示 |
+| 通用 MCP 模式 | WorkBuddy、Claude Desktop、Cursor、Cline 等 | 只要支持 MCP stdio 就能接入 |
+| 热键模式 | 任意 Windows 环境 | 不依赖 Agent，直接保存本地快照文件 |
+
+如果一个 Agent 工具不支持 Codex plugin marketplace，但支持 MCP，就使用「通用 MCP 配置」。
+
 ## 在 Codex 中使用
 
 在新线程里直接说：
@@ -175,6 +264,8 @@ windows-appshots/
     Start-Hotkey.ps1
     hotkey_listener.py
     windows_appshots_mcp.py
+  examples/
+    mcp-server.json
   skills/
     windows-appshots/SKILL.md
 ```
