@@ -5,7 +5,7 @@
       "type": "local",
       "command": [
         "python",
-        "C:\\Users\\<your-user-name>\\plugins\\windows-appshots\\scripts\\windows_appshots_mcp.py"
+        "C:\\Users\\<your-user-name>\\plugins\\windows-appshots\\src\\windows_appshots\\mcp_server.py"
       ],
       "enabled": true,
       "timeout": 30000

@@ -3,7 +3,7 @@
     "windows-appshots": {
       "command": "python",
       "args": [
-        "./scripts/windows_appshots_mcp.py"
+        "./src/windows_appshots/mcp_server.py"
       ]
     }
   }

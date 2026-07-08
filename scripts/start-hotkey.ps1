@@ -1,7 +1,7 @@
 $ErrorActionPreference = "Stop"
 
-$scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
-$listener = Join-Path $scriptDir "hotkey_listener.py"
+$pluginRoot = Resolve-Path (Join-Path $PSScriptRoot "..")
+$listener = Join-Path $pluginRoot "src\windows_appshots\hotkey_listener.py"
 
 Start-Process -WindowStyle Hidden -FilePath "python" -ArgumentList @($listener)
 

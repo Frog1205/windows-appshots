@@ -6,8 +6,8 @@ import sys
 from pathlib import Path
 
 
-PLUGIN_ROOT = Path(__file__).resolve().parents[1]
-CAPTURE_SCRIPT = PLUGIN_ROOT / "scripts" / "Capture-Window.ps1"
+PLUGIN_ROOT = Path(__file__).resolve().parents[2]
+CAPTURE_SCRIPT = PLUGIN_ROOT / "src" / "windows_appshots" / "Capture-Window.ps1"
 DEFAULT_OUTPUT_DIR = Path.home() / ".codex" / "appshots" / "windows"
 
 
@@ -167,7 +167,7 @@ def handle_request(message):
                 {
                     "protocolVersion": params.get("protocolVersion", "2024-11-05"),
                     "capabilities": {"tools": {}},
-                    "serverInfo": {"name": "windows-appshots", "version": "0.1.0"},
+                  "serverInfo": {"name": "windows-appshots", "version": "0.2.0"},
                 },
             )
         elif method == "tools/list":

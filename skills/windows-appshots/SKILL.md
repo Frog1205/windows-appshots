@@ -38,5 +38,5 @@ By default files are saved under:
 - The capture target is the foreground window at the end of the delay.
 - UI text depends on what the target app exposes through Windows UI Automation.
 - Sensitive windows should only be captured when the user explicitly wants that content shared with Codex.
-- The plugin also includes `scripts/Start-Hotkey.ps1`, which starts a `Ctrl+Alt+PrintScreen`
+- The plugin also includes `scripts/start-hotkey.ps1`, which starts a `Ctrl+Alt+PrintScreen`
   listener for direct foreground-window capture outside a Codex tool call.

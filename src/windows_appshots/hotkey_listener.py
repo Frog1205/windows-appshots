@@ -4,8 +4,8 @@ import sys
 from pathlib import Path
 
 
-PLUGIN_ROOT = Path(__file__).resolve().parents[1]
-CAPTURE_SCRIPT = PLUGIN_ROOT / "scripts" / "Capture-Window.ps1"
+PLUGIN_ROOT = Path(__file__).resolve().parents[2]
+CAPTURE_SCRIPT = PLUGIN_ROOT / "src" / "windows_appshots" / "Capture-Window.ps1"
 OUTPUT_DIR = Path.home() / ".codex" / "appshots" / "windows"
 
 MOD_ALT = 0x0001
