@@ -1,0 +1,37 @@
+{
+  "name": "windows-appshots",
+  "version": "0.1.0",
+  "description": "Capture the current Windows foreground app window for Codex context.",
+  "author": {
+    "name": "Frog1205"
+  },
+  "homepage": "https://github.com/Frog1205/windows-appshots",
+  "repository": "https://github.com/Frog1205/windows-appshots",
+  "license": "MIT",
+  "keywords": [
+    "codex",
+    "mcp",
+    "windows",
+    "screenshot",
+    "appshots"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Windows Appshots",
+    "shortDescription": "Capture foreground Windows app snapshots for Codex.",
+    "longDescription": "Windows Appshots captures the foreground Windows application window as a PNG plus metadata and optional UI Automation text, then returns the local snapshot path to Codex.",
+    "developerName": "Frog1205",
+    "category": "Productivity",
+    "capabilities": [
+      "Local",
+      "Screenshot",
+      "MCP"
+    ],
+    "defaultPrompt": [
+      "Take a Windows appshot after I switch apps.",
+      "Capture the foreground window for debugging.",
+      "Create a snapshot of this Windows app state."
+    ]
+  },
+  "mcpServers": "./.mcp.json"
+}
