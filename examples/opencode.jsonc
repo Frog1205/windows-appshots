@@ -1,0 +1,14 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "windows-appshots": {
+      "type": "local",
+      "command": [
+        "python",
+        "C:\\Users\\<your-user-name>\\plugins\\windows-appshots\\scripts\\windows_appshots_mcp.py"
+      ],
+      "enabled": true,
+      "timeout": 30000
+    }
+  }
+}
